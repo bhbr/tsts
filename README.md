@@ -3,10 +3,9 @@
 This package provides a variety of test classes:
 
 - ExecutionTest
-- ConditionTest
 - ValueTest
-- NumberValueTest
+- NumberValueTest (with customizable precision)
+- ConditionTest
 - AssertionTest
 - ErrorTest
-- BundledTest
-
+- BundledTest (running several tests in sequence)
