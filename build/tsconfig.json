@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "outDir": "../dist",
+        "baseUrl": "../src",
+        "allowJs": true,
+        "target": "es2021",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "es2023",
+        ],
+        "paths": {
+            "*": ["./*"],
+            "_tests/*": ["./_tests/*"]
+        }
+    },
+    "include": [
+        "../src/*",
+        "../src/_tests/*"
+    ]
+}
