@@ -1,14 +1,36 @@
 
-import { equal } from '@bhbr/egalite'
+/*******************************************
 
-class Test {
+TypeScript tests (tsts) provides a number of test classes for unit testing.
+Any test runs on a function to be tested.
 
+- ExecutionTest (testing whether the function exits without error)
+- ValueTest (testing the function's result)
+- NumberValueTest (with customizable precision)
+- ConditionTest (testing a condition on the function's result)
+- AssertionTest (testing a boolean function)
+- ErrorTest (testing whether the function throws an error as expected)
+- BundledTest (running several tests in sequence)
+
+*******************************************/
+
+import { equal } from '../node_modules/@bhbr/egalite/dist/egalite.js'
+
+const NB_INDENTATION_SPACES: number = 8
+
+export class Test {
+
+	// a short description of the test (preferably a sentence)
 	name: string
+	// the function to test
 	functionToTest: () => any
+	// saving the function's return value
+	functionResult: any
+	// 
 	catchErrors: boolean
 	silent: boolean
 	indentationLevel: number
-	functionResult: any
+	passed?: boolean
 
 	constructor(args) {
 		this.functionToTest = args['function']
@@ -18,6 +40,7 @@ class Test {
 		this.indentationLevel = args['indentationLevel'] ?? 0
 		if (!this.functionToTest) { return } // might be a bundled test, where this function is only defined later
 		this.name = args['name'] ?? 'Test_' + this.functionToTest.name
+		this.passed = null
 	}
 
 	run(silent: boolean = null): boolean {
@@ -25,19 +48,29 @@ class Test {
 		if (silent) return this.mereRun()
 		
 		this.testLog(`Running ${this.name}...`)
-		let passed = this.mereRun()
-		if (passed) {
-			this.testLog(`PASSED: ${this.name} `, '#070')
+		this.passed = this.mereRun()
+		if (this.passed) {
+			this.logPassedTest(this.name)
 		} else {
-			this.testLog(`FAILED: ${this.name} `, '#700')
+			this.logFailedTest(this.name)
 			this.onTestFailed()
 		}
-		return true
+		return this.passed
 	}
 
 	testLog(str: string, color: string = 'rgba(0, 0, 0, 0)') {
-		let indentation = ' '.repeat(4 * this.indentationLevel)
+		let indentation = ' '.repeat(NB_INDENTATION_SPACES * this.indentationLevel)
 		console.log(indentation + '%c ' + str, `background-color: ${color}`)
+	}
+
+	logPassedTest(testName?: string) {
+		testName = testName ?? this.name
+		this.testLog(`PASSED: ${testName} `, '#070')
+	}
+
+	logFailedTest(testName?: string) {
+		testName = testName ?? this.name
+		this.testLog(`FAILED: ${testName} `, '#700')
 	}
 
 	mereRun(): boolean {
@@ -107,12 +140,20 @@ export class ValueTest extends ConditionTest {
 		}
 	}
 
-	onTestFailed() {
-		this.testLog(`got result`)
-		console.log(this.functionResult)
-		this.testLog(`expected`)
-		console.log(this.expectedResult)
+	logResult(result: any, type: 'expected' | 'gotten') {
+		if (typeof result == 'object') {
+			this.testLog(`${type} result:`)
+			console.log(result)
+		} else {
+			this.testLog(`${type} result: ${result}`)
+		}
 	}
+
+	onTestFailed() {
+		this.logResult(this.functionResult, 'gotten')
+		this.logResult(this.expectedResult, 'expected')
+	}
+
 }
 
 
@@ -151,6 +192,7 @@ export class ErrorTest extends Test {
 	constructor(args) {
 		super(args)
 		this.errorName = args['errorName'] ?? null
+		this.catchErrors = true
 	}
 
 	mereRun(): boolean {

@@ -1,6 +1,6 @@
 # Description
 
-This package provides a variety of test classes:
+TypeScript tests (tsts) provides a number of test classes for unit testing:
 
 - ExecutionTest
 - ValueTest
