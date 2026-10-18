@@ -1,12 +1,22 @@
-
 {
   "name": "@bhbr/tsts",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "A variety of test classes for unit testing in TS",
-  "main": "dist/tsts.js",
-  "directories": {
-    "lib": "dist"
+  "type": "module",
+  "main": "./dist/tsts.js",
+  "types": "./dist/tsts.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/tsts.d.ts",
+      "import": "./dist/tsts.js"
+    }
   },
+  "files": [
+    "dist/tsts.js",
+    "dist/tsts.d.ts",
+    "dist/tsts.js.map",
+    "dist/tsts.d.ts.map"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/bhbr/tsts"
@@ -17,13 +27,13 @@
   "homepage": "https://github.com/bhbr/tsts#readme",
   "scripts": {
     "build": "cd build && ./build.sh",
-    "test": "node dist/_tests/tsts_tests.js"
+    "test": "node dist/_tests/tsts_tests.js",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@bhbr/egalite": "^1.1.3"
   },
   "keywords": [],
   "author": "Ben Hambrecht",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "@bhbr/egalite": ">=1.1.0"
-  }
+  "license": "ISC"
 }

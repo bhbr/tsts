@@ -1,5 +1,7 @@
 #!/bin/bash
-if [ -d "../dist" ]; then
-	rm -r ../dist/*
-fi
-tsc --build tsconfig.json
+set -e
+
+cd "$(dirname "$0")"
+
+rm -rf ../dist
+tsc --project tsconfig.json

@@ -14,7 +14,7 @@ Any test runs on a function to be tested.
 
 *******************************************/
 
-import { equal } from '../node_modules/@bhbr/egalite/dist/egalite.js'
+import { equal } from '@bhbr/egalite'
 
 const NB_INDENTATION_SPACES: number = 8
 

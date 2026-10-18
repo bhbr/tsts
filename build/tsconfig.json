@@ -1,27 +1,26 @@
 {
     "compilerOptions": {
+        "rootDir": "../src",
         "outDir": "../dist",
-        "baseUrl": "../src",
-        "allowJs": true,
-        "target": "ESNext",
+
+        "target": "ES2023",
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
-        "esModuleInterop": true,
+
+        "declaration": true,
+        "declarationMap": true,
         "sourceMap": true,
+
+        "esModuleInterop": true,
         "skipLibCheck": true,
-        //"strict": true,
+
         "lib": [
-            "dom",
-            "dom.iterable",
-            "es2023",
-        ],
-        "paths": {
-            "*": ["./*"],
-            "_tests/*": ["./_tests/*"]
-        }
+            "ES2023",
+            "DOM",
+            "DOM.Iterable"
+        ]
     },
     "include": [
-        "../src/*",
-        "../src/_tests/*"
+        "../src/**/*.ts"
     ]
 }
