@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-        "rootDir": "../src",
-        "outDir": "../dist",
+        "rootDir": "./src",
+        "outDir": "./dist",
 
-        "target": "ES2023",
+        "target": "ES2021",
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
 
@@ -15,12 +15,12 @@
         "skipLibCheck": true,
 
         "lib": [
-            "ES2023",
+            "ES2021",
             "DOM",
             "DOM.Iterable"
         ]
     },
     "include": [
-        "../src/**/*.ts"
+        "./src/**/*.ts"
     ]
 }
