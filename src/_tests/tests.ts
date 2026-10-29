@@ -1,5 +1,5 @@
 
-import { Test, ExecutionTest, ConditionTest, ValueTest, AssertionTest, ErrorTest, BundledTest } from '../tsts.js'
+import { Test, ExecutionTest, ConditionTest, ValueTest, AssertionTest, ErrorTest, BundledTest } from '../index.js'
 
 function functionThatRunsWithoutErrors() { }
 function functionThatReturns42(): number { return 42 }
