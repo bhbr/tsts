@@ -1,6 +1,6 @@
 {
   "name": "@bhbr/tsts",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A variety of test classes for unit testing in TS",
   "type": "module",
   "main": "./dist/tsts.js",
