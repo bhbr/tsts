@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/bhbr/tsts#readme",
   "scripts": {
-    "build": "cd build && ./build.sh",
+    "build": "./build.sh",
     "test": "node dist/_tests/tests.js",
     "prepack": "npm run build"
   },
